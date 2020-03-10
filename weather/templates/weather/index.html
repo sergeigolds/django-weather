@@ -10,18 +10,44 @@
     />
   </head>
   <body>
-    <div
-      class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
-    >
-      <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Features</a>
-        <a class="p-2 text-dark" href="#">Enterprise</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a>
-      </nav>
-      <a class="btn btn-outline-primary" href="#">Sign up</a>
+    <h1 style="text-align: center;margin-top: 50px;">Weather App</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-6" style="margin-bottom: 30px;">
+          <h2 style="margin-bottom: 25px;">Add new city</h2>
+          <form action="" method="post">
+            {% csrf_token %} {{ form.name }}
+            <input
+              type="submit"
+              name="send"
+              value="Add new city"
+              class="mt-2 btn btn-danger"
+            />
+          </form>
+        </div>
+      </div>
+
+      <div class="col-6" style="padding-left:0px">
+        <h2 style="margin-bottom: 25px;">Information</h2>
+
+        {% for info in all_info %}
+        <div class="alert alert-info">
+          <div class="row">
+            <div class="col-9">
+              <b>City:</b> {{ info.city }} <br />
+              <b>Temperature:</b> {{ info.temp }} <sup>o</sup> <br />
+            </div>
+            <div class="col-2">
+              <img
+                src="https://openweathermap.org/img/w/{{ info.icon }}.png"
+                alt="temp icon"
+              />
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
     </div>
-    <h1>Weather App</h1>
   </body>
 </html>
